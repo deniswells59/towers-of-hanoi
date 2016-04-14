@@ -9,20 +9,32 @@
   <script src="https://code.jquery.com/ui/1.12.0-rc.1/jquery-ui.min.js" charset="utf-8"></script>
 </head>
 <body>
-  <h1>Hanoi Game</h1>
-  <p>How many disks do you want?</p>
-  <input id="num" type="number" value='3' max="8"></input>
-  <button id="play">Play!</button>
 
-  <div id="container">
-    <div id="first" class="tower">
-      <div id="small" size ="150" class="disk"></div>
-      <div id="middle" size ="175" class="disk"></div>
-      <div id="big" size ="200" class="disk"></div>
-    </div>
-    <div id="second" class="tower"></div>
-    <div id="third" class="tower"></div>
+  <div class="container">
+    <h1>Hanoi Game</h1>
+    <p>How many disks do you want?</p>
+    <input id="num" type="number" value='3' max="8"></input>
+    <button id="play">Play!</button>
   </div>
+
+  <br>
+
+  <div id="first" class="tower">
+    <div class="piece-container">
+      <div id="small" data-size ="150" class="disk"></div>
+      <div id="middle" data-size ="175" class="disk"></div>
+      <div id="big" data-size ="200" class="disk"></div>
+    </div>
+  </div>
+    <div id="second" class="tower">
+      <div class="piece-container">
+      </div>
+    </div>
+    <div id="third" class="tower">
+      <div class="piece-container">
+      </div>
+    </div>
+
 
 </body>
 </html>

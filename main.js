@@ -10,12 +10,19 @@ function init() {
 }
 
 function generateDivs(){
-  var firstTower = $('#first');
+  var firstTower = $('#first > .piece-container');
+  var secondTower = $('#second > .piece-container');
+  var thirdTower = $('#third > .piece-container');
   var numOfDisks = $('#num').val();
 
+  $('#second').css('background-color', 'black');
+
   firstTower.empty();
-  for(var i = 0, x = numOfDisks; i < numOfDisks; i++,x--){
-    var newDiv = $("<div class='disk' size='"+ x * 25 + "'></div>");
+  secondTower.empty();
+  thirdTower.empty();
+
+  for(var i = 0; i < numOfDisks; i++){
+    var newDiv = $("<div class='disk' data-size='"+ (8-i) * 25 + "'></div>");
     newDiv.prependTo(firstTower);
   }
   setWidth();
@@ -23,18 +30,18 @@ function generateDivs(){
 
 function setWidth() {
   $('.disk').each(function(){
-    width = $(this).attr('size');
+    width = $(this).data('size');
     $(this).width(width);
   })
 }
 
 function towerClicked() {
   if($('.selected').length){
-    var towerToDrop = $(this);
+    var towerToDrop = $(this).find(".piece-container");
     var diskToTest = towerToDrop.children().first();
     dropDisk(diskSelected, towerSelected, towerToDrop, diskToTest);
   } else {
-    towerSelected = $(this);
+    towerSelected = $(this).find(".piece-container");
     diskSelected = towerSelected.children().first();
     diskSelected.toggleClass('selected');
   }
@@ -42,10 +49,11 @@ function towerClicked() {
 
 function dropDisk(diskSelected, towerSelected, towerToDrop, diskToTest) {
   diskSelected.toggleClass('selected');
-  var diskSize = diskSelected.attr('size');
-  var testSize = diskToTest.attr('size');
+  var diskSize = diskSelected.data('size');
+  var testSize = diskToTest.data('size');
   console.log("test:", testSize, "selected:", diskSize);
   if(diskSize < testSize | testSize === undefined){
+    console.log('hi');
     diskSelected.prependTo(towerToDrop);
   } else {
     towerToDrop.effect( "shake" );
@@ -54,9 +62,18 @@ function dropDisk(diskSelected, towerSelected, towerToDrop, diskToTest) {
 }
 
 function checkWin() {
-  var firstTowerContent = $('#first').children();
-  var secondTowerContent = $('#second').children();
+  var firstTower = $('#first > .piece-container');
+  var secondTower = $('#second > .piece-container');
+  var thirdTower = $('#third > .piece-container');
+
+  var firstTowerContent = firstTower.children();
+  var secondTowerContent = secondTower.children();
   if(firstTowerContent.length === 0 && secondTowerContent.length === 0 ) {
-    alert('you win!');
+    firstTower.empty();
+    secondTower.empty();
+    thirdTower.empty();
+
+    $('#second').css('background-color', 'green');
+    $('<p class="winner">YOU WON!</p>').appendTo(secondTower);
   }
 }
