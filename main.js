@@ -6,6 +6,19 @@ var diskSelected;
 function init() {
   setWidth();
   $('.tower').click(towerClicked);
+  $('#play').click(generateDivs);
+}
+
+function generateDivs(){
+  var firstTower = $('#first');
+  var numOfDisks = $('#num').val();
+
+  firstTower.empty();
+  for(var i = 0, x = numOfDisks; i < numOfDisks; i++,x--){
+    var newDiv = $("<div class='disk' size='"+ x * 25 + "'></div>");
+    newDiv.prependTo(firstTower);
+  }
+  setWidth();
 }
 
 function setWidth() {
