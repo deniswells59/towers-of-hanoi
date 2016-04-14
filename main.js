@@ -21,6 +21,8 @@ function generateDisks(){
   firstTower.empty();
   secondTower.empty();
   thirdTower.empty();
+  counter = 0;
+  $('#counter').text(counter);
   $('#highscore').text(Math.pow(2, numOfDisks) - 1 );
 
   for(var i = 0; i < numOfDisks; i++){
