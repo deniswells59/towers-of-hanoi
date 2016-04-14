@@ -56,7 +56,6 @@ function dropDisk(diskSelected, towerSelected, towerToDrop, diskToTest) {
   if(diskSize < testSize | testSize === undefined){
     diskSelected.prependTo(towerToDrop);
     counter ++;
-    console.log(counter);
     $('#counter').text(counter);
   } else {
     towerToDrop.effect( "shake" );
