@@ -1,10 +1,12 @@
+body{
+  text-align: center;
+}
+
 input{
   display: inline;
   align: right;
   width: 24px;
 }
-
-
 
 p {
   display: inline;
