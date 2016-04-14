@@ -2,14 +2,15 @@ document.addEventListener('DOMContentLoaded', init);
 
 var towerSelected;
 var diskSelected;
+var counter = 0;
 
 function init() {
   setWidth();
   $('.tower').click(towerClicked);
-  $('#play').click(generateDivs);
+  $('#play').click(generateDisks);
 }
 
-function generateDivs(){
+function generateDisks(){
   var firstTower = $('#first > .piece-container');
   var secondTower = $('#second > .piece-container');
   var thirdTower = $('#third > .piece-container');
@@ -20,6 +21,7 @@ function generateDivs(){
   firstTower.empty();
   secondTower.empty();
   thirdTower.empty();
+  $('#highscore').text(Math.pow(2, numOfDisks) - 1 );
 
   for(var i = 0; i < numOfDisks; i++){
     var newDiv = $("<div class='disk' data-size='"+ (8-i) * 25 + "'></div>");
@@ -51,10 +53,11 @@ function dropDisk(diskSelected, towerSelected, towerToDrop, diskToTest) {
   diskSelected.toggleClass('selected');
   var diskSize = diskSelected.data('size');
   var testSize = diskToTest.data('size');
-  console.log("test:", testSize, "selected:", diskSize);
   if(diskSize < testSize | testSize === undefined){
-    console.log('hi');
     diskSelected.prependTo(towerToDrop);
+    counter ++;
+    console.log(counter);
+    $('#counter').text(counter);
   } else {
     towerToDrop.effect( "shake" );
   }

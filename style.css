@@ -8,6 +8,10 @@ p {
   display: inline;
 }
 
+.score {
+  font-size: 24;
+}
+
 .tower {
   display: inline-block;
   margin-left: auto;
